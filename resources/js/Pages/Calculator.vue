@@ -116,7 +116,7 @@ const submit = () => {
         </form>
       </CardContent>
       <CardFooter class="flex justify-between px-6 pb-6">
-        <Button @click="submit"> Calculate </Button>
+        <Button variant="secondary" @click="submit"> Calculate </Button>
       </CardFooter>
     </Card>
 
