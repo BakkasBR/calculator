@@ -29,16 +29,19 @@ class CalculatorController extends Controller
         ]);
 
         $operation = Operation::from($validated['operation']);
-        $result = $operation->calculate($validated['leftOperand'], $validated['rightOperand']);
 
-        if (is_float($result)) {
-            CalculationHistory::create([
-                'left_operand' => $validated['leftOperand'],
-                'right_operand' => $validated['rightOperand'],
-                'operation' => $validated['operation'],
-                'result' => $result,
-            ]);
+        try {
+            $result = $operation->calculate($validated['leftOperand'], $validated['rightOperand']);
+        } catch (\DivisionByZeroError $e) {
+            return to_route('calculator.index')->withErrors(['error' => $e->getMessage()]);
         }
+
+        CalculationHistory::create([
+            'left_operand' => $validated['leftOperand'],
+            'right_operand' => $validated['rightOperand'],
+            'operation' => $validated['operation'],
+            'result' => $result,
+        ]);
 
         return to_route('calculator.index')->with('result', $result);
     }

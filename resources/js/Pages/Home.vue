@@ -41,7 +41,7 @@ const qaList = ref([
     },
     {
         question: "Travaillez-vous avec une automatisation des tests ?",
-        answer: "Oui bien sure, en utilisant PHPUnit et Pest pour les tests unitaires et fonctionnels.",
+        answer: "Oui bien sure meme ici. run<strong>./vendor/bin/pest </strong>, en utilisant PHPUnit et Pest pour les tests unitaires et fonctionnels.",
     },
 ]);
 </script>

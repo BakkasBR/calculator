@@ -15,7 +15,7 @@ enum Operation: string
             self::ADDITION => $leftOperand + $rightOperand,
             self::SUBTRACTION => $leftOperand - $rightOperand,
             self::MULTIPLICATION => $leftOperand * $rightOperand,
-            self::DIVISION => ($rightOperand != 0) ? $leftOperand / $rightOperand : 'Error: Division by zero!!!',
+            self::DIVISION => ($rightOperand != 0) ? $leftOperand / $rightOperand : throw new \DivisionByZeroError('Division by zero !!!'),
         };
     }
 

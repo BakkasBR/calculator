@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useForm, usePage } from "@inertiajs/vue3";
+import { useDark } from "@vueuse/core";
 import Navbar from "@/Components/Navbar.vue";
 
 import { Input } from '@/Components/ui/input'
@@ -58,6 +59,8 @@ const submit = () => {
     },
   });
 };
+const isDark = useDark();
+const variant = computed(() => (isDark? "primary" : "outline")); 
 </script>
 
 <template>
@@ -96,9 +99,8 @@ const submit = () => {
           </div>
         </form>
       </CardContent>
-      <CardFooter class="flex justify-between px-6 pb-6">
-        <Button variant="outline"> Clear </Button>
-        <Button class="w-2/3" @click="submit"> Calculate </Button>
+      <CardFooter class="flex justify-between px-6 space-y-1.5">
+        <Button class="inline-block w-full" :variant="variant" @click="submit"> Calculate </Button>
       </CardFooter>
     </Card>
 
@@ -122,6 +124,6 @@ const submit = () => {
         </TableRow>
       </TableBody>
      </Table>
-     
+
   </div>
 </template>
