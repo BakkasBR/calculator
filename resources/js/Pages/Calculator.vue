@@ -76,9 +76,6 @@ const submit = () => {
     },
   })
 }
-
-const isDark = useDark();
-const variant = computed(() => (isDark.value ? "primary" : "secondary")); 
 </script>
 
 <template>
@@ -119,7 +116,7 @@ const variant = computed(() => (isDark.value ? "primary" : "secondary"));
         </form>
       </CardContent>
       <CardFooter class="flex justify-between px-6 pb-6">
-        <Button :variant="variant" @click="submit"> Calculate </Button>
+        <Button @click="submit"> Calculate </Button>
       </CardFooter>
     </Card>
 

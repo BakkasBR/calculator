@@ -1,8 +1,8 @@
 export type Calculation = {
-    id: number
+    id: number;
     left_operand: number;
-    right_Operand: number;
-    operator: string;
+    right_operand: number;
+    operation: string;
     result: number;
     created_at: string;
     updated_at: string;
