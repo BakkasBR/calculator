@@ -7,9 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
-
-# Calculator Project
+## Calculator Project
 
 This project is a Laravel and Vue by using inertia 2.0 (ShadCN Vue) application that includes a calculator with session-based error handling and toasts for UI feedback.
 
