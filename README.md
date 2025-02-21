@@ -95,8 +95,8 @@ php artisan serve
 
 | Command | Description |
 |---------|-------------|
-| `php artisan migrate:fresh --seed` | Reset database with seed data |
-| `php artisan cache:clear` | Clear cache |
+| `php artisan migrate:fresh` | Reset database with seed data |
+| `php artisan optimize:clear` | Clear cache |
 | `php artisan route:list` | Show all routes |
 | `npm run build` | Build for production |
 | `./vendor/bin/sail up -d` | Start Docker services |
