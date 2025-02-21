@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useForm, usePage } from "@inertiajs/vue3";
+
+import Toaster from '@/Components/ui/toast/Toaster.vue'
+import { useToast } from "@/Components/ui/toast/use-toast";
+
 import { useDark } from "@vueuse/core";
 import Navbar from "@/Components/Navbar.vue";
 
@@ -51,20 +55,35 @@ const form = useForm({
   operation: operations.value[0],
 });
 
+const { toast } = useToast();
+
 const submit = () => {
   form.post("/process", {
     onSuccess: () => {
       history.value = page.props.history;
       form.reset();
+      toast({
+        title: "Calculation Successful",
+        description: "The calculation was successful.",
+      });
     },
-  });
-};
+    onError: () => {
+      toast({
+        title: "Calculation Failed",
+        description: "cant devide by 0",
+        variant: "destructive",
+      });
+    },
+  })
+}
+
 const isDark = useDark();
-const variant = computed(() => (isDark? "primary" : "outline")); 
+const variant = computed(() => (isDark.value ? "primary" : "secondary")); 
 </script>
 
 <template>
   <Navbar />
+  <Toaster class="mt-3" />
   <div class="max-w-5xl mx-auto mt-6 md:flex gap-10">
     <!-- Calculator Section -->
     <Card class="w-full">
@@ -99,13 +118,13 @@ const variant = computed(() => (isDark? "primary" : "outline"));
           </div>
         </form>
       </CardContent>
-      <CardFooter class="flex justify-between px-6 space-y-1.5">
-        <Button class="inline-block w-full" :variant="variant" @click="submit"> Calculate </Button>
+      <CardFooter class="flex justify-between px-6 pb-6">
+        <Button :variant="variant" @click="submit"> Calculate </Button>
       </CardFooter>
     </Card>
 
     <!-- History Section -->
-     <Table>
+    <Table>
       <TableCaption class="font-bold text-lg">A list of recent calculations.</TableCaption>
       <TableHeader>
         <TableRow>
@@ -123,7 +142,7 @@ const variant = computed(() => (isDark? "primary" : "outline"));
           <TableCell>{{ entry.result }}</TableCell>
         </TableRow>
       </TableBody>
-     </Table>
+    </Table>
 
   </div>
 </template>
